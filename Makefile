@@ -1,18 +1,31 @@
 CXX = clang++
-CXXFLAGS = -g
-LDFLAGS = -lgtest -pthread
-TESTOBJ = main.o
+CXXFLAGS = -g -std=c++11 -Wall
+LDTESTFLAGS = -lgtest -pthread -L. -lsioux
+TESTOBJ = test_main.o
 TESTDEPS = test/*.cpp
 
-all:
-	sioux test
+LDFLAGS = -lboost_system -lboost_thread -L. -fPIC -shared
+SRC = src/*.cpp
+HEADERS = src/*.hpp
+OBJ = $(notdir $(SRC:.cpp=.o))
+TARGET = libsioux.so
 
-sioux:
+.PHONY: $(TARGET) all $(OBJ) test $(TESTOBJ) clean
 
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CXX) -o $(TARGET) $^ $(LDFLAGS)
+
+$(OBJ): $(SRC) 
+	$(CXX) -c $^ $(CXXFLAGS)
 
 test: $(TESTOBJ)
-	$(CXX) -o target/tester main.o $(LDFLAGS)
-	target/tester
+	$(CXX) -o tester $^ $(LDTESTFLAGS)
+	./tester
 
 $(TESTOBJ): $(TESTDEPS)
-	$(CXX) -c test/main.cpp $(CXXFLAGS)
+	$(CXX) -c $^ $(CXXFLAGS)
+	
+clean: 
+	rm -f *.o
