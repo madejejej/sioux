@@ -6,11 +6,11 @@
 #include <vector>
 
 namespace sioux {
-boost::shared_ptr<request> request_parser::parse(boost::shared_ptr<std::string> request_str)
+std::shared_ptr<request> request_parser::parse(std::shared_ptr<std::string> request_str)
 	throw( WrongRequestException )
 {
 	using namespace std;
-	boost::shared_ptr<request> req (
+	std::shared_ptr<request> req (
 		new request() );
 
 	istringstream iss(*request_str);

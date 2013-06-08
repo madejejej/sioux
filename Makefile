@@ -1,10 +1,10 @@
 CXX = clang++
-CXXFLAGS = -g -std=c++11 -Wall
+CXXFLAGS = -g -std=c++11 -Wall -stdlib=libc++
 LDTESTFLAGS = -lgtest -pthread -L. -lsioux
 TESTOBJ = test_main.o
 TESTDEPS = test/*.cpp
 
-LDFLAGS = -lboost_system -lboost_thread -L. -fPIC -shared
+LDFLAGS = -lboost_system -lboost_filesystem -lboost_thread -L. -fPIC -shared
 SRC = src/*.cpp
 HEADERS = src/*.hpp
 OBJ = $(notdir $(SRC:.cpp=.o))

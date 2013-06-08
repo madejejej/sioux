@@ -1,4 +1,7 @@
-#include <boost/shared_ptr.hpp>
+#ifndef __REQUEST_PARSER__
+#define __REQUEST_PARSER__
+
+#include <memory>
 #include <iterator>
 
 #include "request.hpp"
@@ -10,9 +13,10 @@ namespace sioux {
 		
 		public:
 			request_parser() {}
-			boost::shared_ptr<request> parse(boost::shared_ptr<std::string> request_str)
+			std::shared_ptr<request> parse(std::shared_ptr<std::string> request_str)
 				throw( WrongRequestException );
 		private:
 			
 	};
 }
+#endif
