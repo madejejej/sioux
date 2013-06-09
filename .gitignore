@@ -13,4 +13,5 @@
 *.a
 
 # ignore build
-target/
+sioux_app
+tester
