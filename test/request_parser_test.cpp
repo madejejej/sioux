@@ -10,7 +10,7 @@ namespace sioux {
 	namespace test {
 
 	request_parser req_parser;
-	std::string basic_request("GET index.html HTTP/1.0\r\n\r\n");
+	std::string basic_request("GET /index.html HTTP/1.0\r\n\r\n");
 
 	TEST(parse, shouldUnderstandGetRequest) {
 		auto req = req_parser.parse(std::make_shared<std::string>(basic_request));

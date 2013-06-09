@@ -4,15 +4,19 @@ LDTESTFLAGS = -L. -lgtest -pthread -lsioux
 TESTOBJ = test_main.o
 TESTDEPS = test/*.cpp
 
-LDFLAGS = -lboost_system -L. -fPIC -shared
+LDFLAGS = -lboost_system  -L. -fPIC -shared
 SRC = src/*.cpp
 HEADERS = src/*.hpp
 OBJ = $(notdir $(SRC:.cpp=.o))
 TARGET = libsioux.so
 
-.PHONY: $(TARGET) all $(OBJ) test $(TESTOBJ) clean
+.PHONY: $(TARGET) all $(OBJ) test $(TESTOBJ) clean app
 
-all: $(TARGET)
+all: $(TARGET) app
+
+app: 
+	$(CXX) -c src/app/sioux.cpp $(CXXFLAGS)
+	$(CXX) -o sioux_app sioux.o -L. -lboost_system -pthread -lsioux
 
 $(TARGET): $(OBJ)
 	$(CXX) -o $(TARGET) $^ $(LDFLAGS)

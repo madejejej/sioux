@@ -19,12 +19,22 @@ std::shared_ptr<request> request_parser::parse(std::shared_ptr<std::string> requ
 		istream_iterator<string>(),
 		back_inserter< vector<string> >(tokens));
 
+	if(tokens.size() < 3) {
+		req.reset();
+		return req;
+	}
+
 	if(tokens[0] == "GET") {
 		req->method = "GET";
 	} else {
-		
+		req.reset( );
+		return req;
 	}
-	req->uri = tokens[1];
+	req->uri = tokens[1].substr(1);
+	if(req->uri == "") {
+		req->uri = "index.html";
+	}
+	req->http_version = tokens[2];
 	return req;
 }
 
