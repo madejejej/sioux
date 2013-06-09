@@ -1,10 +1,10 @@
 CXX = clang++
-CXXFLAGS = -g -std=c++11 -Wall -stdlib=libc++
-LDTESTFLAGS = -lgtest -pthread -L. -lsioux
+CXXFLAGS = -g -std=c++11 -Wall #-stdlib=libc++
+LDTESTFLAGS = -L. -lgtest -pthread -lsioux
 TESTOBJ = test_main.o
 TESTDEPS = test/*.cpp
 
-LDFLAGS = -lboost_system -lboost_filesystem -lboost_thread -L. -fPIC -shared
+LDFLAGS = -lboost_system -L. -fPIC -shared
 SRC = src/*.cpp
 HEADERS = src/*.hpp
 OBJ = $(notdir $(SRC:.cpp=.o))
@@ -18,7 +18,7 @@ $(TARGET): $(OBJ)
 	$(CXX) -o $(TARGET) $^ $(LDFLAGS)
 
 $(OBJ): $(SRC) 
-	$(CXX) -c $^ $(CXXFLAGS)
+	$(CXX) -c $^ $(CXXFLAGS) -fPIC
 
 test: $(TESTOBJ)
 	$(CXX) -o tester $^ $(LDTESTFLAGS)
