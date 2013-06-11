@@ -16,7 +16,7 @@ all: $(TARGET) app
 
 app: 
 	$(CXX) -c src/app/sioux.cpp $(CXXFLAGS)
-	$(CXX) -o sioux_app sioux.o -L. -lboost_system -pthread -lsioux
+	$(CXX) -o sioux_app sioux.o -L. -lboost_system -lboost_thread -lboost_program_options -pthread -lsioux
 
 $(TARGET): $(OBJ)
 	$(CXX) -o $(TARGET) $^ $(LDFLAGS)

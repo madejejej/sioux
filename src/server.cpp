@@ -27,7 +27,20 @@ server::server(const std::string &address,
 	start();
 }
 
-void server::run()
+void server::run( std::size_t thread_count )
+{
+	if( thread_count < 1 ) {
+		std::cerr << thread_count << " threads, rly?\n";
+		return;
+	}
+	for(std::size_t i=0; i<thread_count; i++) {
+		m_workerThreads.create_thread( boost::bind(&server::run_thread, this) );
+	}
+	std::cout << "Started " << thread_count << " dispatching threads\n";
+	m_workerThreads.join_all();
+}
+
+void server::run_thread()
 {
 	m_ioService.run();
 }

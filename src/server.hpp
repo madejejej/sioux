@@ -7,6 +7,7 @@
 #include <boost/asio.hpp>
 #include <memory>
 #include <boost/shared_ptr.hpp>
+#include <boost/thread.hpp>
 
 
 namespace sioux {
@@ -15,10 +16,11 @@ namespace sioux {
 		
 	public:
 		server(const std::string &address, const std::string &port );
-		void run();
+		void run( std::size_t thread_count = 1 );
 
 	private:
 		void start();
+		void run_thread();
 		void accept_handler( const boost::system::error_code &ec );
 
 		boost::asio::io_service 					m_ioService;
@@ -26,6 +28,7 @@ namespace sioux {
 		std::shared_ptr< request_handler > 			m_requestHandler;
 		connection_pool								m_connectionPool;
 		boost::shared_ptr< connection > 			m_incomingConnection;
+		boost::thread_group							m_workerThreads;
 	};
 }
 
