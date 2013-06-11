@@ -1,9 +1,0 @@
-#include "../server.hpp"
-
-using namespace sioux;
-
-int main() {
-	server s("127.0.0.1", "80");
-	s.run();
-	return 0;
-}
