@@ -27,9 +27,9 @@ namespace sioux {
 			req->http_version = "HTTP/1.0";
 			reply rep;
 			handler.handle_request(req, rep);
-			std::cout << req->to_string();
-			std::cout << rep.to_string();
 			ASSERT_EQ( reply::ok, rep.type );
+			ASSERT_EQ( "<html><head><title>Test site</title></head><body><h1>O HAI</h1><br /><p>This works!</p></body></html>\n",
+					rep.content );
 		}
 
 		TEST(handle_request, IncorrectRequestCase) {

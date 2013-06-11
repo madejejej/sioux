@@ -70,8 +70,5 @@ namespace sioux {
 				rep.content = premade_replies::reply_not_implemented;
 				break;
 		}
-		rep.headers.push_back( header( "Content-Length",
-							boost::lexical_cast<std::string>( rep.content.size() ) ) );
-		rep.headers.push_back( header("Content-Type", "text/html") );
 	}
 }

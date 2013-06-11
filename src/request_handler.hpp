@@ -19,6 +19,7 @@ namespace sioux {
   			struct stat buffer;   
   			return (stat (name.c_str(), &buffer) == 0); 
 		}
+		std::string get_file_content( const std::string &filepath );
 	};
 
 }
