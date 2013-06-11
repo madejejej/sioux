@@ -14,9 +14,9 @@ namespace sioux {
 			req->method = "GET";
 			req->uri = "file/doesnt/exist.html";
 			req->http_version = "HTTP/1.0";
-			reply rep;
+			response rep;
 			handler.handle_request(req, rep);
-			ASSERT_EQ( reply::not_found, rep.type );
+			ASSERT_EQ( response::not_found, rep.type );
 		}
 
 		TEST(handle_request, OkCase) {
@@ -25,18 +25,18 @@ namespace sioux {
 			req->method = "GET";
 			req->uri = "test/index.html";
 			req->http_version = "HTTP/1.0";
-			reply rep;
+			response rep;
 			handler.handle_request(req, rep);
-			ASSERT_EQ( reply::ok, rep.type );
+			ASSERT_EQ( response::ok, rep.type );
 			ASSERT_EQ( "<html><head><title>Test site</title></head><body><h1>O HAI</h1><br /><p>This works!</p></body></html>\n",
 					rep.content );
 		}
 
 		TEST(handle_request, IncorrectRequestCase) {
 			std::shared_ptr< sioux::request > req;
-			reply rep;
+			response rep;
 			handler.handle_request(req, rep);
-			ASSERT_EQ( reply::not_implemented, rep.type );
+			ASSERT_EQ( response::not_implemented, rep.type );
 		}
 
 	}

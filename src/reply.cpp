@@ -25,7 +25,7 @@ namespace sioux {
 				"</html>";
 	}
 
-	std::string reply::to_string()
+	std::string response::to_string()
 	{
 		using namespace std;
 		ostringstream ss;
@@ -39,7 +39,7 @@ namespace sioux {
 		return ss.str();
 	}
 
-	std::string reply::type_to_string( reply_type t )
+	std::string response::type_to_string( reply_type t )
 	{
 		switch(t) {
 					case ok:
@@ -53,7 +53,7 @@ namespace sioux {
 				}
 	}
 
-	void reply::make_content(reply &rep)
+	void response::make_content(response &rep)
 	{
 		using namespace std;
 		switch(rep.type) {

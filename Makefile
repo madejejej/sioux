@@ -1,6 +1,6 @@
 CXX = clang++
 CXXFLAGS = -g -std=c++11 -Wall #-stdlib=libc++
-LDTESTFLAGS = -L. -lgtest -pthread -lsioux
+LDTESTFLAGS = -L. -lgtest -pthread -lsioux -lboost_thread
 TESTOBJ = test_main.o
 TESTDEPS = test/*.cpp
 

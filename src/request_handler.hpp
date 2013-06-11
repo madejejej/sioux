@@ -13,7 +13,7 @@ namespace sioux {
 
 	class request_handler {
 	public:
-		void handle_request( std::shared_ptr< request > req, reply &rep );
+		void handle_request( std::shared_ptr< request > req, response &rep );
 	private:
 		bool file_exists( const std::string &name ) {
   			struct stat buffer;   

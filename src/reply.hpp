@@ -7,7 +7,7 @@
 #include <vector>
 
 namespace sioux {
-	struct reply {
+	struct response {
 		
 		enum reply_type {
 			ok = 200,
@@ -22,15 +22,15 @@ namespace sioux {
 		std::string to_string();
 
 		static std::string type_to_string( reply_type t );
-		static reply stock_reply( reply_type t ) {
-			reply rep;
+		static response stock_reply( reply_type t ) {
+			response rep;
 			rep.type = t;
 			make_content( rep );
 			return rep;
 		}
 
 	private:
-		static void make_content(reply &rep);
+		static void make_content(response &rep);
 	};
 }
 #endif

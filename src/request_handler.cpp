@@ -5,20 +5,20 @@
 
 namespace sioux
 {
-	void request_handler::handle_request( std::shared_ptr< request > req, reply &rep )
+	void request_handler::handle_request( std::shared_ptr< request > req, response &rep )
 	{
 		if( req.get() == nullptr ) {
-			rep = reply::stock_reply(reply::not_implemented);
+			rep = response::stock_reply(response::not_implemented);
 		} else if( req->method == "GET" ) {
 			if( file_exists( req->uri ) ) {
-				rep = reply::stock_reply(reply::ok);
+				rep = response::stock_reply(response::ok);
 				rep.content = get_file_content( req->uri );
 			} else {
-				rep = reply::stock_reply(reply::not_found);
+				rep = response::stock_reply(response::not_found);
 			}
 
 		} else {
-			rep = reply::stock_reply(reply::not_implemented);
+			rep = response::stock_reply(response::not_implemented);
 		}
 		rep.headers.push_back( header( "Content-Length",
 									boost::lexical_cast<std::string>( rep.content.size() ) ) );

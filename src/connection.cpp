@@ -42,7 +42,7 @@ namespace sioux
 		} else {
 			std::cerr << "Incorrect or unimplemented request: " << m_data.data() << std::endl;
 		}
-		reply rep;
+		response rep;
 		m_requestHandler->handle_request( req, rep );
 
 		std::cout << "Reply: " << rep.to_string() << std::endl;
