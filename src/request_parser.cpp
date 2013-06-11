@@ -1,13 +1,11 @@
 #include "request_parser.hpp"
 #include "request.hpp"
-#include "WrongRequestException.hpp"
 #include <sstream>
 #include <algorithm>
 #include <vector>
 
 namespace sioux {
 std::shared_ptr<request> request_parser::parse(std::shared_ptr<std::string> request_str)
-	throw( WrongRequestException )
 {
 	using namespace std;
 	std::shared_ptr<request> req (

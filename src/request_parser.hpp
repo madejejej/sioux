@@ -5,7 +5,6 @@
 #include <iterator>
 
 #include "request.hpp"
-#include "WrongRequestException.hpp"
 
 namespace sioux {
 
@@ -13,8 +12,7 @@ namespace sioux {
 		
 		public:
 			request_parser() {}
-			std::shared_ptr<request> parse(std::shared_ptr<std::string> request_str)
-				throw( WrongRequestException );
+			std::shared_ptr<request> parse(std::shared_ptr<std::string> request_str);
 		private:
 			
 	};
