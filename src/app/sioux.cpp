@@ -6,7 +6,7 @@ using namespace sioux;
 
 int main(int argc, char **argv) {
 	std::string default_addr = "127.0.0.1";
-	std::string port = "80";
+	std::string port = "8080";
 	std::size_t thread_count = 1;
 
 	try {
